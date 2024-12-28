@@ -1,0 +1,18 @@
+.container{
+    background-color: black;
+}
+.container2{
+    display: flex;
+    justify-content: center;
+}
+.box1{
+    background-color: rgb(45, 26, 5);
+    width: 200px; height: 200px;
+}
+.box2{
+    background-color: rgb(229, 205, 175);
+    width: 200px; height: 200px;
+}
+.text1{
+    font-size: 60px;
+}

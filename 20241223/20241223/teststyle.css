@@ -1,0 +1,22 @@
+
+.box1{
+  width: 10%; height: 100px; background-color: red;
+}
+.box2{
+    width: 20%; height: 100px; background-color:orange;
+  }
+  .box3{
+    width: 30%; height: 100px; background-color:yellow;
+  }
+  .box4{
+    width: 40%; height: 100px; background-color:green;
+  }
+  .box5{
+    width: 50%; height: 100px; background-color:blue;
+  }
+  .box6{
+    width: 60%; height: 100px; background-color: deepskyblue;
+  }
+  .box7{
+    width: 70%; height: 100px; background-color: purple;
+  }

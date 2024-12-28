@@ -1,0 +1,12 @@
+h1:hover {
+color: red;
+}
+input:focus{
+    background-color: yellow;
+}
+a:active{
+    color: red;
+}
+p:active{
+    color: blue;
+}

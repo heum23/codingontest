@@ -1,0 +1,32 @@
+.font1{
+    background-color: yellow;
+    
+}
+.font2{
+    background-color: skyblue;
+   
+}
+.font3{
+    background-color: green;
+    display: inline;
+    width:100%;
+}
+.font4{
+    background-color: green;
+    
+}
+.font5{
+    background-color: orange;
+   
+}
+.font6{
+    background-color: orange;
+    
+}
+.font7{
+    color: brown;
+}
+
+.font8{ 
+    background-color: red;
+}

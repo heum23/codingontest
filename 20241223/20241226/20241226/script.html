@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            var는 재선언 재할당 가능
+            let은 재선언 불가능 재할당 가능
+            const는 둘다 불가능    
+        */
+
+       let colors = ["red", "orange", "yellow", "green", "black", "purple", "blue"] ;
+        console.log (colors[2]);
+        colors.push("brown");
+        console.log(colors);
+        console.log(colors.indexOf("black"));
+        console.log(colors.reverse(colors));
+                
+        const _data ={
+            name: "진순흠",
+            age:22,
+            like: "운동"
+        };
+
+        console.log(`안녕하세요. 제 이름은 ${_data.name}입니다. 저는 ${_data.age}살 이고요. 좋아하는
+        것은 ${_data.like}입니다. 감사합니다`)
+        console.log(typeof _data)
+        console.log(0== "0");
+        console.log(21 % 5);
+
+        let result1, result2;
+        let num1 = 10;
+        let num2 = 10;
+
+        result1 = ++num1;
+        console.log(result1);
+        
+        console.log(num1 === num2);
+
+
+        // or 연산자
+        // 이름이 뽀로로이거나 , 성인이면 통과
+        const name = "뽀로로"
+        const age = 18;
+        const adult = age > 19; // false
+        const data = "";
+        if(name === "뽀로로" && age > 19) {
+            console.log("통과");
+        } else { 
+            console.log("돌아가");
+        };
+
+        if(data) {
+            console.log("데이터 있음");
+        } else {
+            console.log("데이터 없음");
+        };
+        function say(){
+            console.log("안녕하세요.");
+        };
+
+        //더하기 함수
+        const plus = () =>{
+            const num1 = prompt("첫번쨰 숫자를 입력해주세요.");
+            const num2 = prompt("두번쨰 숫자를 입력해 주세요.");
+            
+            return alert(Number(num1) + Number(num2) + "입니다.");
+        };
+        //뺴기 함수
+        const m = () =>{
+            const num1 = prompt("첫번째 숫자를 입력해주세요.");
+            const num2 = prompt("두번쨰 숫자를 입력해주세요.");
+            return alert(Number(num1) - Number(num2) + "입니다.");
+        }
+           //곱하기 함수
+           const x = () =>{
+            const num1 = prompt("첫번째 숫자를 입력해주세요.");
+            const num2 = prompt("두번쨰 숫자를 입력해주세요.");
+            return alert(Number(num1) * Number(num2) + "입니다.");
+        }
+           //나누기 함수
+           const n = () =>{
+            const num1 = prompt("첫번째 숫자를 입력해주세요.");
+            const num2 = prompt("두번쨰 숫자를 입력해주세요.");
+            return alert(Number(num1) / Number(num2) + "입니다.");
+        }
+    </script>
+</head>
+    <script>
+       
+    </script>
+<body>
+   <button onclick="plus()">더하기</button>
+   <button onclick="m()">뺴기</button>
+   <button onclick="x()">곱하기</button>
+   <button onclick="n()">나누기</button>
+  
+</body>
+    
+</html>

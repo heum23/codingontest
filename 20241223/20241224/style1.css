@@ -1,0 +1,147 @@
+.box1{
+    background-color:white;
+    width: 700px; height: 700px;
+    border-top-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-right-color: blacks;
+    border-width: medium;
+    border-style: solid;
+}
+.orange1{
+    background-color: orange;
+    width: 150px; height: 40px;
+    position: relative;
+    top: 660px;
+}
+
+.orange2{
+    background-color: orange;
+    width:40px; height:150px;
+    position: relative;
+    top: 470px;
+}
+.yellow{
+    background-color: yellow;
+    width: 40px; height: 40px;
+    position: relative;
+    top: 470px;
+    left:150px;
+}
+.yellow2{
+    background-color: yellow;
+    width: 260px; height: 40px;
+    position: relative;
+    top: 390px;
+    left: 40px;
+}
+.green1{
+    background-color: green;
+    width: 200px; height: 40px;
+    position: relative;
+    left: 190px;
+    top: 390px;
+}
+.green2{
+    background-color: green;
+    width: 60px; height: 40px;
+    position: relative;
+    left: 450px;
+    top: 350px;
+}
+
+.green3{
+    background-color: green;
+    width: 140px; height: 40px;
+    position: relative;
+    left: 560px;
+    top: 310px;
+}
+.blue1{
+    background-color: blue;
+    width: 60px; height: 40px;
+    position: relative;
+    top: 270px;
+    left: 390px;
+}
+.blue2{
+    background-color: blue;
+    width: 60px; height: 40px;
+    position: relative;
+    top: 230px;
+    left:500px;
+}
+.black1{
+    background-color: black;
+    width: 200px; height: 50px;
+    position: relative;
+    top: -200px; left: 100px;
+}
+.black2{
+    background-color: black;
+    width: 50px; height: 200px;
+    position: relative;
+    top: -400px; left: 150px;
+}
+.black3{
+    background-color: black;
+    width: 100px; height: 50px;
+    position: relative;
+    top: -650px; left: 150px;
+}
+.black4{
+    background-color: black;
+    width: 150px; height: 50px;
+    position: relative;
+    top: -400px; left: 130px;
+}
+.black5{
+    background-color: black;
+    width: 50px; height: 50px;
+    position: relative;
+    top: -400px; left: 230px;
+}
+.black6{
+    background-color: black;
+    width: 300px; height: 50px;
+    position: relative;
+    top: -760px; left: 360px;
+}
+.black7{
+    background-color: black;
+    width: 50px; height: 220px;
+    position: relative;
+    top: -760px; left: 480px;
+}
+.black8{
+    background-color: black;
+    width: 150px; height: 50px;
+    position: relative;
+    top: -760px; left: 480px;
+}
+.box2{
+    background-color:white;
+    width: 200px; height: 200px;
+    border-top-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-right-color: blacks;
+    border-width: medium;
+    border-style: solid;
+    position: fixed;
+    top: 8px;
+    left: 710px;
+}
+.black9{
+    background-color: black;
+    width: 150px; height: 30px;
+    position: fixed;
+    top: 160px; left: 750px;
+}
+.black10{
+    background-color: black;
+    width: 30px; height: 120px;
+    position: fixed;
+    top: 40px; left: 750px;
+}
+

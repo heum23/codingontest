@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="jas1.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script> 
+
+        const _data = {
+            name: "진순흠",
+            age: 22,
+            like: "운동",
+            house: "부산"
+    }
+    console.log(`안녕하세요. 제 이름은 ${_data.name}이고 나이는 ${_data.age}이며 좋아하는것은 
+    ${_data.like}입니다.고향은 ${_data.house}입니다`);
+    let fruits = ["apple", "orange", "melon", "pair", "pineapple"]
+    console.log(fruits.indexOf("orange"));
+    console.log(fruits.includes("apple"));
+    console.log(fruits);
+    console.log(fruits.includes("watermelon"));
+    fruits.push("watermelon")
+    console.log(fruits.includes("watermelon"));
+    console.log(fruits);
+    console.log(fruits.reverse(fruits));
+    console.log(typeof 3);
+    
+    const avarage = () => {
+    let mathScore = prompt("수학 점수를 입력하세요");
+    let engScore = prompt("영어 점수를 입력해주세요.");
+    return alert ( (Number(mathScore) + Number(engScore)) / 2);
+}
+    console.log(typeof "das" + "isn't"+ typeof"das" + "data type." + 
+        "typeof를 boolean이나 null에 사용하면," + typeof fruits + "결과를 얻을 수 있습니다." 
+    )
+    let age = 18;
+    let adult = age >19 ;
+    if(!adult) {
+        console.log("돌아가");
+    } else {
+        console.log("통과");
+    }
+    const multify = (number1 , number2) => {
+        return number1 * number2 ; 
+    } ;
+    console.log(multify(3,7));
+    const plus1 = (num1 , num2) =>{
+        return num1+ num2 ; 
+    } ; 
+    console.log(plus1(3,7));
+    const mm = (num3 , num4) =>{
+        return  (num3 - num4) ; 
+    } ;
+    console.log(mm(9,4));
+    console.log(fruits.reverse(fruits))
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+    <button onclick="avarage()">평균 구하기</button>
+    <button onclick="mm()">ㅎㅎ</button>
+    
+    <div class="text1">
+        위의 계산기를 이용하여 평균을 구하시오.
+    </div>
+</div>
+</body>
+</html>
