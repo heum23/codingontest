@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //반복문 (for (for of/in),while (do-while))
+        //for(초기화문; 조건문; 증감문) {//얼마나 반복할 것인가? => ()
+            //반복하고 싶은 명령어
+        // }
+        for(let i = 0; i < 10; i++){//(i 변수 초기화(0) ; i가 10보다 작을떄 까지 ; i를 1씩 증가)
+            // 안녕하세요 10번 출력하기
+            console.log(i + "번쨰안녕하세요!")// 반복하고자 하는 명령문
+            for(let j = 0; j < 5; j++) {
+                console.log("안쪽 반복문:" , j)
+            }
+        };
+        for(let k = prompt("숫자를 입력해주세요!") ; k < 10000; k++ ) {
+            if(k % 13==0){
+                if(k % 2 == 1){
+                console.log(k +"은(는)13의배수며 홀수입니다.")
+            }
+            }
+        }
+    </script>
+</body>
+</html>
