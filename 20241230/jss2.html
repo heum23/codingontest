@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="jss2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // if문
+        const number = 18; 
+        if( number >= 20 ) { //조건 1 
+            // 조건1이 참이라면 실행
+            console.log("성인입니다.")
+        } else { //조건1이 거짓이라면 실행
+            console.log("미성년자입니다.")
+        };
+
+        const str = "user";
+        if(str === "admin") { //조건 1
+            console.log("관리자 입니다.")
+        } else if(str ==="user"){ //조건 2
+            // 조건 1을 만족하지 않고 조건 2를 만족할 경우 실행
+            console.log("회원입니다.")
+        } else{
+            //조간 1을 만족하지 않고 조건 2를 만족하지 않은 경우에 실행
+            console.log("비회원입니다.")
+        };
+        // if는 무조건 있어야 오류 X
+        
+        if(number >= 20) {//중첩 사용가능
+            if(str === "user") {
+        console.log("성인 회원입니다.")
+        } console.log("성인 비회원입니다.")
+           } else(
+            console.log("미성년자입니다.")
+           );
+        //switch
+        switch(str) {
+            case "admin" : // str === "admin"
+                console.log("switch 관리자 입니다.") 
+                break;
+            case "user" : // str === "user"
+                console.log("switch 회원입니다.")
+                //break; 조심하기!!
+            case "aaaa": // str === "aaaa"
+            case "bbbb": // str === "bbbb"
+                console.log('test입니다.')
+                break ;
+            //default:// 이 와의 모든것(선택사항)
+                console.log("switch 비회원 입니다.");
+                break;
+        }
+         // 조건? 참일 경우 실행할 명령어(명령어 1개) : 거짓일 경우 실행할 명령어(명령어 1개)
+
+         number >=20 ? comsole.log("성인임") : console.log("미성년임.")
+
+        const age = prompt("나이를 입력해주세요.");
+        const mail = prompt("성별을 입력해주세요");
+        
+        if(age >=20 && mail === "여자"){
+            console.log("성인 여자");
+        }else if(age >= 20 && mail === "남자"){
+            console.log( "성인 남자")
+        } 
+        else if(age >=17 && mail ==="여자"){
+            console.log("여자고등학생 ");
+        } else if(age >=17 && mail ==="남자"){
+            console.log("남자고등학생")
+        } else if(age >=14 && mail === "여자"){
+            console.log("여자중학생");
+        }else if(age >=14 && mail === "남자"){
+            console.log("남자중학생")
+        }
+          else if(age >=8 && mail==="여자"){
+            console.log("여자초등학생");
+        }else if(age >=8 && mail ==="남자"){
+            console.log("남자초등학생")
+        }
+        else if(age >=0 && mail==="여자"){
+            console.log("여자유아")
+        }else if(age >=0 && mail ==="남자"){
+            console.log("남자유아")
+        }
+        else { console.log("ㅗㅗ")};
+
+        if(age >= 20){
+            if(mail === "남자"){
+                console.log("성인남자")
+            }
+            if(mail ==="여자"){
+                console.log("성인여자")
+            }
+        }//else if ---  생략
+        else {
+            console.log("ㅗㅗ")
+        }
+       
+
+        //switch
+        //삼항연산자 
+        let now = new Date().getHours();
+        now >= 12 ? console.log("오후") : console.log("오전")
+
+    </script>    
+</body>
+</html>

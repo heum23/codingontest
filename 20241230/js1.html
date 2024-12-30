@@ -9,15 +9,53 @@
 <script>
     console.log("안녕하세요!");
     const age = 19;
-    const name = "순흠" ; 
+    const name = "진순흠" ; 
     const adult = age > 18 ; 
     if(name !== "진순흠" && !adult) {
         console.log("돌아가");
     } else {
-        console.log("통과")
+        console.log("통과");
     };
+    const fruits = ["딸기", "사과" , "수박", "토마토"];
+    console.log(fruits);
+    fruits.push("감");
+    console.log(fruits);
+    console.log(fruits.reverse(fruits));
+    console.log(fruits.indexOf("사과"));
+    console.log(fruits.includes("수박"));
+
+    const pp = () => {
+    const number1 = prompt("첫번쨰 숫자를 입력해주세요");
+    const number2 = prompt("두번쨰 숫자를 입력해주세요");
+        return alert (Number(number1) + Number(number2));
+};
+    const bike = ["기차",];
+    bike.push("타요");
+    console.log(bike);
+    console.log(bike + fruits)
+    console.log(fruits.reverse(fruits) +  bike);
+    const add = (num1,num2) => {
+    return num1 + num2 ;
+};
+    const minus = (num3,num4) => {
+        return num3 - num4 ; 
+    }
+    const data = "";
+    if(data){
+        console.log("데이터 있음")
+    } else{
+        console.log("데이터 없음")
+    }
+    const square = (number3) =>{
+        return number3 **2
+    }
+console.log(add(3,7));
+console.log(add(5,7));
+console.log(minus(7,4));
+console.log(square(3));
+console.log(square(6));
 </script>
 <body>
-    
+    <button onclick="pp()">눌러!</button>
 </body>
 </html>
