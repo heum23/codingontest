@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const object = {a:1, b:2, c:3}
+
+        const now = new Date(); // 지금 이 코드가 읽히는 시간을 반환함.(중요!)
+        const date = new Date(2016, 5, 25);//년, 월, 일, 시, 분, 초 // 2016년 05월 25일 00시(꽤? 쓰임)
+        const date2 = new Date(2016, 5, 25, 15, 30);
+        const date3 = new Date("2016-05-25");//(중요!)//데이터베이스에 실제로 데이터를 저장하게 될 경우
+        const date4 = new Date("2016/05/25");
+        const date5 = new Date(1123213); //Date 객체가 기준으로 삼는 날짜 ? 1970년도 1월 1일 기준으로 1123213ms 이후의 날짜를 반환
+        console.log(date);
+        console.log(now);
+        // 2024 -12-31 16시 기준
+        console.log(now.getDate());// 일 -> 31
+        const date6 = new Date("2024/12/29");
+        console.log(date6.getDay());
+        console.log(now.getDay());//요일 --> 화 -> 숫자로 반환 -> 2//일(0) 월(1) 화(2) 수(3) 목(4) 금(5) 토(6) 
+        console.log(now.getFullYear()); // 년도를 반환 --> 2024
+        console.log(now.getTime()); // 1970년 1월 1일로부터 몇 ms 가 흘렀는지 숫자로 반환
+        //강의를 구매 했는데, 1년 동안 수강 가능한 강의.(만료일 2025-12-31)
+        //2025년 11월 1일 접속해서 강의 수강한다면?
+        const expiredDate = new Date('2025-12-31')
+        // if(now.getTime() > expiredDate.getTime()) => 만료가 된 강의,
+        // else => 만료되지 않음.
+
+        console.log(now.getHours()) // 시간 -> 16
+        console.log(now.getMinutes())//분
+        console.log(now.getSeconds())//초
+        const year = now.getFullYear(); //2024
+        const month = now.getMonth() + 1; // 12 (유의. getMonth 한 후에 +1 하기)
+        const datee = now.getDate(); //31
+        console.log(`${year}-${month}-${datee}`)
+
+
+        // javascript class
+        // class: 객체를 만드는 틀(붕어빵 기계)
+        // class로 만들어지는 것 -> 객체 (붕어빵)
+
+        console.log(Math.PI); // 3.14xxxx
+        console.log(Math.E);//2.71xxx
+        console.log(Math.min(2,3,4,5,7,1)) // 최솟값 출력 ->1
+        console.log(Math.max(2,3,4,5,7,1));//최댓값 
+        console.log(Math.random()); // 0 <= x < 1
+        console.log(Math.floor(3.14)) // 내림 (소수점 제거)
+        console.log(Math.ceil(3.14)); //올림
+        console.log(Math.round(3.14)); //반올림
+        
+        
+        // 0 ~ 10
+        // Matn.random() = 0 <= x <1
+        // Math.random() * 10 : 0 <= x < 10
+        // Math.random() * 10 + 1 : 1 <= x < 11
+        console.log(Math.floor(Math.random() * 10 + 1));
+        
+        console.log(document)
+   
+    </script>
+</body>
+</html>

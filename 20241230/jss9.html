@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let array = [];
+    for (let i = 1; i <= 100; i++) {
+    array.push(i);
+    }
+    console.log(array);
+    let num2 = 0;
+    for(let i = 0; i < array.length; i++){
+        num2 += array[i]
+    };
+    console.log("for문"+num2)
+    numforof = 0;
+    for(let num of array){
+        numforof += num
+    }
+    console.log("forof"+numforof)
+    numforEach = 0;
+    array.forEach((num) =>{
+        numforEach += num;
+    })
+    console.log("forEach"+numforEach)
+
+    let fruits1 = ['사과', '딸기', '파인애플','수박','참외','오렌지','자두','망고'];
+    let fruits2 = ['수박','사과','참외','오렌지','파인애플','망고'];
+    
+    const same =fruits1.filter(Element=> fruits2.includes(Element));
+    console.log(same)
+    const diff = fruits1.filter(Element => !fruits2.includes(Element));
+    console.log(diff)
+
+    </script>
+</body>
+</html>

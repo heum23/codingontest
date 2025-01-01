@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let i = 0;
+        let k = 1;
+        while(k < 100) {
+            if(k % 3 === 0 || k % 2 === 0){
+                i += k
+            }
+            k++
+        }
+        console.log(i)
+
+
+        for(let j = 1; j<=9; j++){
+            console.log(`---${j}단---`)
+            for(let l = 1; l <=9; l++){
+                console.log(`${j} X ${l} = ${j * l}`)
+            }
+        }
+        let number = prompt("숫자를 입력해주세요!")
+        for(let m = 0 ; m <=number; m++ ) {
+            if(m % 13 ===0 && m % 2 === 0){
+                console.log(`${m}은 13의 배수이며 짝수입니다다 `)
+            }
+        };
+    </script>
+</body>
+</html>
