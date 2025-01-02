@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="jss14.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>게시판 입니다.(수정불가!)<h2> <br> <br>
+    작성자: <input type="text" id="name"><br>
+    내용: <input type="text" id="text"><br>
+    <button onclick="addComment()">작성</button><br>
+    <br>
+
+    <table border="1" cellpadding="6" cellspacing=0 >
+    <thead>
+        <tr>
+            <td>번호</td>
+            <td>작성자</td>
+            <td>내용</td>
+            <td>작성일</td>
+        </tr>
+    </thead>
+    <tbody id="comments">
+
+    </tbody>
+    </table>
+    <script>
+        let num1 = 1;
+        const addComment = () => {
+        const name = document.getElementById("name").value.trim() ; 
+        const text = document.getElementById("text").value.trim() ;
+            
+            if(name === "" || text === ""){
+                alert("작성자와 내용을 모두 입력해주세요!");
+                return;
+            }
+            const now = new Date()
+            const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()} `;
+            
+            const tr = document.createElement("tr");
+
+            const tdNum = document.createElement("td");
+            const tdName = document.createElement("td");
+            const tdText = document.createElement("td");
+            const tdDate = document.createElement("td");
+
+            tdNum.innerText = num1;
+            tdName.innerText = name;
+            tdText.innerText = text;
+            tdDate.innerText = date;
+
+            tr.appendChild(tdNum);
+            tr.appendChild(tdName);
+            tr.appendChild(tdText);
+            tr.appendChild(tdDate);
+            document.getElementById("comments").appendChild(tr)
+            num1++;
+
+            document.getElementById("name").value = "";
+            document.getElementById("text").value = "";
+
+        }
+        
+    </script>
+</body>
+</html>

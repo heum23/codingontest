@@ -40,15 +40,17 @@
                 result = num1 / num2 
                 break;
             default : 
-                result = "유효하지 않은 값값"
+                result = "유효하지 않은 값"
         }
         document.getElementById("result").value = result ; 
+        reset(false)
         }
-        const reset = () => {
+        const reset = (clearResult = true) => {
             document.getElementById("num1").value = "";
             document.getElementById("num2").value = "";
             document.getElementById("plus").value = "";
-            document.getElementById("result").value = "";
+            if(clearResult){
+            document.getElementById("result").value = "";}
         }
     </script>
     <br>
