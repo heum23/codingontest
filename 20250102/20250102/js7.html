@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //결과 값 
+        let result = "";
+        // 반복문
+    for(let i = 0; i < str.length; i++) {//str.length 배열의 길이
+        // 배열의 i번쨰 글자 들고오기
+        let text = str[i]
+        //if문 들고온글자가 소문자로 변형한것과 같으면 대문자로 바꿔서 더하고 아니면 소문자로 바꿔서 더함함
+        if(text === text.toLowerCase()){
+            result += text.toUpperCase();
+        }else{
+            result += text.toLowerCase();
+        }
+        
+    }
+    console.log(result);
+// 홀짝에 따라 다른 값 반환하기
+function solution(n) {
+    var answer = 0;
+    
+    if(n % 2 === 1){
+        for(let i =1; i <= n; i +=2){
+            answer += i;
+        }
+    }else{
+            for(let i =2; i<=n; i+= 2){
+                answer += i*i
+            }
+        }
+    return answer
+}
+// 코드 처리하기(프로그래머스)
+function solution(code) {
+    let mode = 0
+    let ret = ""
+    // 코드 배열 안에서 idx에 해당되는 요소 가져오기 
+    for(idx = 0; idx < code.length; idx++){
+        const text = code[idx]
+        // 가져온 요소가 1이면 mode의 값을 0 =>1 , 1=>0 으로 바꿔주기 
+        if(text === "1"){
+            mode = 1 - mode;
+        }//모드가 0일때는 짝수 번쨰 요소 추가//모드가 1일때는 홀수번째 요소 추가
+        else{
+            if((mode === 0 && idx % 2 === 0)||(mode === 1 && idx % 2 === 1)){
+                ret += text
+            }
+        }
+    } // 비어있으면 엠티 반환 아니면 더해놓은 ret 반환환
+    return ret === "" ? "EMPTY" : ret
+}
+//등차수열의 특저한 항만 더하기 
+// 등차수열 a가 첫항이고 d가 등차라면 a+x*d => 등차수열의 식
+function solution(a, d, included) {
+    var answer = 0;
+    for(let i = 0; i < included.length; i++){
+        if(included[i]){//bolean의 배열 참이면 넘어감
+            answer += a + i*d
+        }
+    }
+    return answer;
+}
+</script>
+</html>

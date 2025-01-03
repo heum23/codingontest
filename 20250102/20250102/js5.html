@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="js4.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <img id="img" src="../img/start.png" alt="fruts"/>
+        <br>
+        <div class=" btns">
+            <div class=btn onclick="change('사과')"> 사과 </div>
+            <div class=btn onclick="change('바나나')"> 바나나 </div> 
+            <div class=btn onclick="change('포도')"> 포도 </div> 
+            <div class=btn onclick="change('복숭아')"> 복숭아 </div> 
+        </div>
+    </div>
+</body>
+<script>
+    const change = (type) => {
+    let imgSrc = "";
+
+    if (type === '사과') {
+        imgSrc = "../img/apple.jpg";
+    } else if (type === '바나나') {
+        imgSrc = "../img/banana.jpeg";
+    } else if (type === '포도') {
+        imgSrc = "../img/grape.jpg";
+    } else {
+        imgSrc = "../img/peach.jpeg";
+    }
+
+    // jQuery로 이미지 src 변경
+    $("img").attr("src", imgSrc);
+};
+
+</script>
+</html>

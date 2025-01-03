@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="js6.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+날짜: <input id = "date" type="text"/><br>
+내용: <input id = "text" type="text"/><br>
+<button onclick="writeSchedule()">작성</button>
+<table border="0" cellpadding="25">
+    <thead>
+        <h2>2025년 1월</h2>
+        <tr>
+            <th>日</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+        </tr>
+    </thead>
+    <tbody id="body">
+    </tbody>
+</table>
+</body>
+
+<script>
+    let date = 1;
+    for( let i = 0; i < 5; i++) {
+        const row = document.createElement("tr");
+        for(let j = 0; j<7; j++){
+            const cell =document.createElement("td");
+            if( i === 0 && j < 3) {
+                cell.innerText = "" 
+            }else if (date < 32) {
+                cell.innerText = date;
+                date++
+            }
+            row.appendChild(cell);
+        }
+        document.getElementById("body").appendChild(row);
+    }
+    const color = document.querySelectorAll('tr');
+    // color.forEach(raw => {
+    //     const firstchild = raw.firstElementChild;
+    //     if(firstchild) {
+    //         firstchild.style.color = 'red';
+    //     }
+    // })
+    for( let i = 0; i < color.length; i++){
+        const firstchild = color[i].firstElementChild;
+        if(firstchild) {
+            firstchild.style.color = 'red';
+        }
+    }
+    const color2 = document.querySelectorAll('tr');
+    // color.forEach(raw => {
+    //     const lastchild = raw.lastElementChild;
+    //     if(lastchild) {
+    //         lastchild.style.color = 'blue';
+    //     }
+    // })
+    for(let i = 0; i < color2.length; i++){
+        const lastchild = color2[i].lastElementChild;
+        if(lastchild) {
+            lastchild.style.color = "blue"
+        }
+    }
+
+    const writeSchedule = () => {
+        // 밸류 가져오기
+        const content = document.getElementById("date").value;
+        const text = document.getElementById("text").value;
+        //가져온 숫자 형변환 
+        const Day = Number(content)
+        //달력 안 숫자 다 가져오기(배열)
+        const cells = document.querySelectorAll("td");
+        
+        for( let k = 0; k < cells.length; k++) {
+           //td안에 있는 숫자 형변환 후 가져오기
+            const cellDay = Number(cells[k].innerText);
+           if(cellDay === Day){// 가져온 숫자들 비교 컨텐트= 입력한숫자 데이= 달력의 숫자
+            //디브 태그 만들기
+            const text2 = document.createElement('div');
+            //디브 태그 안에 입력한 내용 넣기
+            text2.innerText = text;
+            //k번쨰 td 아래에 자식요소로 디브태그 추가 
+            cells[k].appendChild(text2);
+           }
+        }
+    }
+</script>
+
+</html>
