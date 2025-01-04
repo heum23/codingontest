@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할 일 목록</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            margin-left: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .checked {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>할 일 목록</h1>
+    <input type="text" id="taskInput" placeholder="할 일을 입력하세요">
+    <button onclick="addTask()">추가</button>
+    
+    <ul id="taskList"></ul>
+
+    <script>
+        // 할 일 목록을 가져오기
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        // 할 일 목록을 화면에 표시하기
+        function displayTasks() {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <input type="checkbox" onclick="toggleTask(${index})" ${task.completed ? "checked" : ""}>
+                    <span class="${task.completed ? "checked" : ""}">${task.text}</span>
+                    <button onclick="deleteTask(${index})">삭제</button>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        // 할 일 추가하기
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const newTask = taskInput.value.trim();
+            if (newTask) {
+                tasks.push({ text: newTask, completed: false });
+                taskInput.value = "";
+                saveTasks();
+                displayTasks();
+            }
+        }
+
+        // 할 일 상태 변경하기
+        function toggleTask(index) {
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks();
+            displayTasks();
+        }
+
+        // 할 일 삭제하기
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            saveTasks();
+            displayTasks();
+        }
+
+        // 할 일 저장하기
+        function saveTasks() {
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        // 초기화면에 할 일 목록 표시
+        displayTasks();
+    </script>
+</body>
+</html>
