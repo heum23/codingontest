@@ -1,0 +1,91 @@
+/* 기본 레이아웃 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ecf0f1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 메인 랩 */
+.main-wrap {
+  width: 80%;
+  margin: 30px auto;
+}
+
+/* 테이블 스타일 */
+.main {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main th,
+.main td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #bdc3c7;
+}
+
+.main th {
+  background-color: #34495e;
+  color: white;
+}
+
+.main td {
+  background-color: #ffffff;
+}
+
+/* 표 아래 div 섹션 */
+.main-wrap div {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* hover 효과 */
+.main-wrap div:hover {
+  background-color: #16a085;
+  transform: scale(1.05);
+}
+
+/* 미성년자/성인 텍스트 강조 */
+.minor {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.adult {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.longest-nickname {
+  color: #f39c12;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+  .main-wrap div {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-wrap div {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

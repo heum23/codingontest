@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="js14.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main-wrap">
+      <!-- 1번째 테이블 
+         2번째 테이블 row 클릭시에 -->
+    </div>
+    <!-- 1번째 -->
+    <!-- 이름 나이 커리어 별명 -->
+
+    <!-- 2번째 -->
+    <!-- 해당하는 줄을 눌렀을 때 alert 혹은 모달을 사용해서 해당 하는 사람의 이름은
+    name이고 나이는 age이며 미성년자 or 성인입니다. 커리어에는
+    놀기,먹기,자기,숨쉬기가 있고 별명으로는 ~,~,~,~가 있습니다. -->
+    <!-- 3번째 -->
+    <!-- 1.미성년자는 000이 있고, 그 사람의 커리어는 careers 가 있으며 별명은
+    nickName 입니다. 2.성인은 name,name2 이 있고 name의 커리어는 careers 가
+    있으며 별명은 nickName 입니다.name2의 커리어는 careers 가 있으며 별명은
+    nickName 입니다. 3.별명중 가장 별명이 긴 사람을 찾는 알고리즘 만들어주세요 -->
+  </body>
+  <script>
+    const data = [
+      {
+        id: 1,
+        name: "김철수",
+        age: 14,
+        careers: [
+          { title: "놀기" },
+          { title: "먹기" },
+          { title: "자기" },
+          { title: "숨쉬기" },
+        ],
+        nickName: [
+          { name: "김안철수" },
+          { name: "김김안철수" },
+          { name: "박터짐" },
+        ],
+      },
+      {
+        id: 2,
+        name: "영희",
+        age: 35,
+        careers: [
+          { title: "놀기" },
+          { title: "자전거타기" },
+          { title: "오렌지먹기" },
+          { title: "사과부시기" },
+        ],
+        nickName: [
+          { name: "김영희" },
+          { name: "야생사자" },
+          { name: "오올이" },
+        ],
+      },
+      {
+        id: 3,
+        name: "박광철",
+        age: 20,
+        careers: [
+          { title: "일수나가기" },
+          { title: "돈빌려주기" },
+          { title: "공무집행방해" },
+          { title: "무면허운전" },
+        ],
+        nickName: [
+          { name: "대흥역호랑이와사자두마리" },
+          { name: "마포불주먹" },
+          { name: "전설" },
+          { name: "경찰의적" },
+        ],
+      },
+      {
+        id: 5,
+        name: "안철수",
+        age: 19,
+        careers: [
+          { title: "놀기" },
+          { title: "먹기" },
+          { title: "자기" },
+          { title: "숨쉬기" },
+        ],
+        nickName: [
+          { name: "김안철수" },
+          { name: "김김안철SDFSDFSDFSDFSDFSFSDFSDF수" },
+          { name: "박터짐" },
+        ],
+      },
+    ];
+    const main = document.querySelector(".main-wrap");
+
+    main.innerHTML = `
+      <table class="main" border="1">
+        <thead>
+          <th>이름</th>
+          <th>나이</th>
+          <th>커리어</th>
+          <th>별명</th>
+        </thead>
+        <tbody class="sub">
+            </tbody>
+
+      </table>
+    `;
+    const sub = document.querySelector(".sub");
+    const first = main.querySelector(".first");
+    const second = main.querySelector(".second");
+    const third = main.querySelector(".third");
+    const forth = main.querySelector(".forth");
+
+    const alertText = (type) => {
+      // data[type] 대신 data.find()를 사용하여 정확히 해당 항목을 찾도록 변경
+      const person = data.find((item) => item.id === type);
+      if (person) {
+        alert(
+          `해당하는 사람의 이름은 ${person.name} 이고 나이는 ${
+            person.age
+          }이며 ${
+            person.age > 19 ? "성인입니다" : "미성년자입니다"
+          } 커리어에는 ${person.careers.map(
+            (career) => `${career.title}`
+          )} 가 있고 별명으로는 ${person.nickName.map(
+            (nick) => `${nick.name}`
+          )} 가 있습니다.`
+        );
+      }
+    };
+
+    const maketable = () => {
+      data.map((item) => {
+        sub.innerHTML += `<tr onclick="alertText(${item.id})">
+      <td>${item.name}</td>
+      <td>${item.age}</td>
+      <td class="career">
+        ${item.careers.map((career) => `${career.title}<br>`).join("")}
+      </td>
+      <td class="nick">
+        ${item.nickName.map((nick) => `${nick.name}<br>`).join("")}
+      </td>
+    </tr>`;
+      });
+    };
+
+    maketable();
+    const text = () => {
+      const filterData = data.filter((item) => item.age < 20);
+      main.innerHTML += filterData
+        .map(
+          (item) =>
+            `<div>미성년자는 ${
+              item.name
+            }이고, 그 사람의 커리어는 ${item.careers.map(
+              (career) => `${career.title}`
+            )}가 있으며 별명은 ${item.nickName.map(
+              (nick) => `${nick.name}`
+            )}입니다.</div>`
+        )
+        .join("");
+    };
+
+    text();
+
+    const text2 = () => {
+      const filterData = data.filter((item) => item.age >= 20);
+      const adultsHTML = filterData
+        .map(
+          (person) =>
+            `${person.name}의 커리어는 ${person.careers
+              .map((career) => career.title)
+              .join(", ")} 이고 별명은 ${person.nickName
+              .map((nick) => nick.name)
+              .join(", ")}입니다.`
+        )
+        .join("<br>");
+
+      main.innerHTML += `<div>성인은 ${filterData
+        .map((person) => person.name)
+        .join(", ")}이고<br>${adultsHTML}</div>`;
+    }; //굳이 한번에 다 안써도 되고 위에서 밑에 단어만 선언후에 들고 와서 붙여주기
+    text2();
+
+    const longName = () => {
+      let longestPerson = null; // 별명이 가장 긴 사람
+      let longestNickNameLength = 0; // 가장 긴 별명의 길이
+
+      for (const person of data) {
+        // 현재 사람의 별명 중 가장 긴 길이를 계산
+        for (const nick of person.nickName) {
+          if (nick.name.length > longestNickNameLength) {
+            longestNickNameLength = nick.name.length; // 최대 길이 갱신
+            longestPerson = person.name; // 별명이 가장 긴 사람 갱신
+          }
+        }
+      }
+
+      // 결과를 HTML에 추가
+      main.innerHTML += `<p>별명이 가장 긴 사람은 ${longestPerson}입니다.</p>`;
+    };
+
+    longName();
+  </script>
+</html>
