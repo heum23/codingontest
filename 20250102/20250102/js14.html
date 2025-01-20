@@ -7,91 +7,142 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="main-wrap">
-      <!-- 1번째 테이블 
-         2번째 테이블 row 클릭시에 -->
-    </div>
-    <!-- 1번째 -->
-    <!-- 이름 나이 커리어 별명 -->
+    <!--  -->
+    <div class="inpit-wrap">
 
-    <!-- 2번째 -->
-    <!-- 해당하는 줄을 눌렀을 때 alert 혹은 모달을 사용해서 해당 하는 사람의 이름은
-    name이고 나이는 age이며 미성년자 or 성인입니다. 커리어에는
-    놀기,먹기,자기,숨쉬기가 있고 별명으로는 ~,~,~,~가 있습니다. -->
-    <!-- 3번째 -->
-    <!-- 1.미성년자는 000이 있고, 그 사람의 커리어는 careers 가 있으며 별명은
-    nickName 입니다. 2.성인은 name,name2 이 있고 name의 커리어는 careers 가
-    있으며 별명은 nickName 입니다.name2의 커리어는 careers 가 있으며 별명은
-    nickName 입니다. 3.별명중 가장 별명이 긴 사람을 찾는 알고리즘 만들어주세요 -->
-  </body>
+      <!-- 아이디는 숫자, 중복 불가 -->
+      <input type="number" class="id"placeholder="아이디를 입력해 주세요."/>
+      <div class="idInput"></div>
+
+      <!-- 이름 중복 가능 -->
+      <input class="name" placeholder="이름을 입력해 주세요."/>
+      <div class="nameInput"></div>
+
+      <!-- 나이 숫자 -->
+      <input type="number" class="age" placeholder="나이를 입력해 주세요."/>
+      <div class="ageInput"></div>
+
+      <!-- 경력사항 최소 15자 이상 -->
+      <input class="career" placeholder="경력을 입력해 주세요."/>
+      <div class="careerInput"></div>
+
+      <!-- 별명 최소 2자 이상 -->
+      <input class="nickName" placeholder="별명을 입력해 주세요."/>
+      <div class="nicknameInput"></div>
+
+
+      <button onclick="dataCheck()">저장</button>
+    </div>
+    <!-- 테이블 -->
+    <div class="main-wrap"></div>
+   
   <script>
-    const data = [
-      {
-        id: 1,
-        name: "김철수",
-        age: 14,
-        careers: [
-          { title: "놀기" },
-          { title: "먹기" },
-          { title: "자기" },
-          { title: "숨쉬기" },
-        ],
-        nickName: [
-          { name: "김안철수" },
-          { name: "김김안철수" },
-          { name: "박터짐" },
-        ],
-      },
-      {
-        id: 2,
-        name: "영희",
-        age: 35,
-        careers: [
-          { title: "놀기" },
-          { title: "자전거타기" },
-          { title: "오렌지먹기" },
-          { title: "사과부시기" },
-        ],
-        nickName: [
-          { name: "김영희" },
-          { name: "야생사자" },
-          { name: "오올이" },
-        ],
-      },
-      {
-        id: 3,
-        name: "박광철",
-        age: 20,
-        careers: [
-          { title: "일수나가기" },
-          { title: "돈빌려주기" },
-          { title: "공무집행방해" },
-          { title: "무면허운전" },
-        ],
-        nickName: [
-          { name: "대흥역호랑이와사자두마리" },
-          { name: "마포불주먹" },
-          { name: "전설" },
-          { name: "경찰의적" },
-        ],
-      },
-      {
-        id: 5,
-        name: "안철수",
-        age: 19,
-        careers: [
-          { title: "놀기" },
-          { title: "먹기" },
-          { title: "자기" },
-          { title: "숨쉬기" },
-        ],
-        nickName: [
-          { name: "김안철수" },
-          { name: "김김안철SDFSDFSDFSDFSDFSFSDFSDF수" },
-          { name: "박터짐" },
-        ],
-      },
-    ];
+    let dataSet = []
+   let saveData1 = JSON.parse(window.localStorage.getItem("data"))
+   dataSet.push(saveData1)
+    const dataCheck = () => {
+  // div 
+  const idInput = document.querySelector(".idInput")
+    const nameInput = document.querySelector(".nameInput")
+    const ageInput = document.querySelector(".ageInput")
+    const careerInput = document.querySelector(".careerInput")
+    const nicknameInput = document.querySelector(".nicknameInput")
+    //
+
+    const id = document.querySelector(".id")
+    const nameValue = document.querySelector(".name")
+    const age = document.querySelector(".age")
+    const career = document.querySelector(".career")
+    const nickName = document.querySelector(".nickName")
+    let allData = {
+      id : id.value,
+      name : nameValue.value,
+      age : age.value,
+      career : career.value,
+      nickName : nickName.value
+  
+    }
+    dataSet.push(allData)
+    let saveData1 = JSON.parse(window.localStorage.getItem("data"))
+    
+     const findType = dataSet.filter((item) => item.id == id.value)
+     if(saveData1){
+     console.log(findType)
+     }
+     return;
+      let open = false
+    if(saveData1){
+        idInput.innerHTML = `중복된 아이디입니다!`
+        open = true
+        return
+      }else{
+      idInput.innerHTML = `확인되었습니다!`
+    }
+    if(nameValue.value === ""){
+      nameInput.innerHTML = `<p>값을 입력해주세요!</p>`
+      open = true
+        return
+    }else{nameInput.innerHTML = `<p>확인되었습니다!</p>`};
+    if(age.value === ""){
+      ageInput.innerHTML = `<p>값을 입력해주세요!</p>`
+      open = true
+        return
+    }else{ageInput.innerHTML = `<p>확인되었습니다!</p>`};
+    if(career.value.length < 15){
+      careerInput.innerHTML = `<p>15자 이상 입력해주세요!</p>`
+      open = true
+        return
+    }else{
+      careerInput.innerHTML = `<p>확인되었습니다!</p>`
+    };
+    if(nickName.value.length < 3){
+      nicknameInput.innerHTML = `<p>입력좀 해라</p>`
+      open = true
+        return
+    }else{
+      nicknameInput.innerHTML = `<p>ㅇㅋ</p>`
+    };
+    if(!open){saveData()}else{
+      return
+    }
+
+}
+    
+    let data = []
+    const saveData = () => {
+    // input value
+    const id = document.querySelector(".id")
+    const nameValue = document.querySelector(".name")
+    const age = document.querySelector(".age")
+    const career = document.querySelector(".career")
+    const nickName = document.querySelector(".nickName")
+    // div 
+    const idInput = document.querySelector(".idInput")
+    const nameInput = document.querySelector(".nameInput")
+    const ageInput = document.querySelector(".ageInput")
+    const careerInput = document.querySelector(".careerInput")
+    const nicknameInput = document.querySelector(".nicknameInput")
+      
+    
+
+    // if(id&&nameValue&&age&&career&nickName)
+    
+   let allData = {
+      id : id.value,
+      name : nameValue.value,
+      age : age.value,
+      career : career.value,
+      nickName : nickName.value
+  
+    }
+    dataSet.push(allData)
+    window.localStorage.setItem("data",JSON.stringify(dataSet))
+    maketable(allData)
+    }
+    //가져오기 
+    
+    
+
     const main = document.querySelector(".main-wrap");
 
     main.innerHTML = `
@@ -107,11 +158,7 @@
 
       </table>
     `;
-    const sub = document.querySelector(".sub");
-    const first = main.querySelector(".first");
-    const second = main.querySelector(".second");
-    const third = main.querySelector(".third");
-    const forth = main.querySelector(".forth");
+    
 
     const alertText = (type) => {
       // data[type] 대신 data.find()를 사용하여 정확히 해당 항목을 찾도록 변경
@@ -131,77 +178,102 @@
       }
     };
 
-    const maketable = () => {
-      data.map((item) => {
+    const sub = document.querySelector(".sub");
+    const maketable = (ten) => {
+     ten.map((item) => {
         sub.innerHTML += `<tr onclick="alertText(${item.id})">
       <td>${item.name}</td>
       <td>${item.age}</td>
       <td class="career">
-        ${item.careers.map((career) => `${career.title}<br>`).join("")}
+        ${item.career}
       </td>
       <td class="nick">
-        ${item.nickName.map((nick) => `${nick.name}<br>`).join("")}
+        ${item.nickName}
       </td>
     </tr>`;
       });
     };
+  
+ 
 
-    maketable();
-    const text = () => {
-      const filterData = data.filter((item) => item.age < 20);
-      main.innerHTML += filterData
-        .map(
-          (item) =>
-            `<div>미성년자는 ${
-              item.name
-            }이고, 그 사람의 커리어는 ${item.careers.map(
-              (career) => `${career.title}`
-            )}가 있으며 별명은 ${item.nickName.map(
-              (nick) => `${nick.name}`
-            )}입니다.</div>`
-        )
-        .join("");
-    };
 
-    text();
 
-    const text2 = () => {
-      const filterData = data.filter((item) => item.age >= 20);
-      const adultsHTML = filterData
-        .map(
-          (person) =>
-            `${person.name}의 커리어는 ${person.careers
-              .map((career) => career.title)
-              .join(", ")} 이고 별명은 ${person.nickName
-              .map((nick) => nick.name)
-              .join(", ")}입니다.`
-        )
-        .join("<br>");
+   
 
-      main.innerHTML += `<div>성인은 ${filterData
-        .map((person) => person.name)
-        .join(", ")}이고<br>${adultsHTML}</div>`;
-    }; //굳이 한번에 다 안써도 되고 위에서 밑에 단어만 선언후에 들고 와서 붙여주기
-    text2();
+    
+ 
+   
+    // const maketable = () => {
+    //   data.map((item) => {
+    //     sub.innerHTML += `<tr onclick="alertText(${item.id})">
+    //   <td>${item.name}</td>
+    //   <td>${item.age}</td>
+    //   <td class="career">
+    //     ${item.careers.map((career) => `${career.title}<br>`).join("")}
+    //   </td>
+    //   <td class="nick">
+    //     ${item.nickName.map((nick) => `${nick.name}<br>`).join("")}
+    //   </td>
+    // </tr>`;
+    //   });
+    // };
 
-    const longName = () => {
-      let longestPerson = null; // 별명이 가장 긴 사람
-      let longestNickNameLength = 0; // 가장 긴 별명의 길이
+    // maketable();
+    // const text = () => {
+    //   const filterData = data.filter((item) => item.age < 20);
+    //   main.innerHTML += filterData
+    //     .map(
+    //       (item) =>
+    //         `<div>미성년자는 ${
+    //           item.name
+    //         }이고, 그 사람의 커리어는 ${item.careers.map(
+    //           (career) => `${career.title}`
+    //         )}가 있으며 별명은 ${item.nickName.map(
+    //           (nick) => `${nick.name}`
+    //         )}입니다.</div>`
+    //     )
+    //     .join("");
+    // };
 
-      for (const person of data) {
-        // 현재 사람의 별명 중 가장 긴 길이를 계산
-        for (const nick of person.nickName) {
-          if (nick.name.length > longestNickNameLength) {
-            longestNickNameLength = nick.name.length; // 최대 길이 갱신
-            longestPerson = person.name; // 별명이 가장 긴 사람 갱신
-          }
-        }
-      }
+    // text();
 
-      // 결과를 HTML에 추가
-      main.innerHTML += `<p>별명이 가장 긴 사람은 ${longestPerson}입니다.</p>`;
-    };
+    // const text2 = () => {
+    //   const filterData = data.filter((item) => item.age >= 20);
+    //   const adultsHTML = filterData
+    //     .map(
+    //       (person) =>
+    //         `${person.name}의 커리어는 ${person.careers
+    //           .map((career) => career.title)
+    //           .join(", ")} 이고 별명은 ${person.nickName
+    //           .map((nick) => nick.name)
+    //           .join(", ")}입니다.`
+    //     )
+    //     .join("<br>");
 
-    longName();
+    //   main.innerHTML += `<div>성인은 ${filterData
+    //     .map((person) => person.name)
+    //     .join(", ")}이고<br>${adultsHTML}</div>`;
+    // }; //굳이 한번에 다 안써도 되고 위에서 밑에 단어만 선언후에 들고 와서 붙여주기
+    // text2();
+
+    // const longName = () => {
+    //   let longestPerson = null; // 별명이 가장 긴 사람
+    //   let longestNickNameLength = 0; // 가장 긴 별명의 길이
+
+    //   for (const person of data) {
+    //     // 현재 사람의 별명 중 가장 긴 길이를 계산
+    //     for (const nick of person.nickName) {
+    //       if (nick.name.length > longestNickNameLength) {
+    //         longestNickNameLength = nick.name.length; // 최대 길이 갱신
+    //         longestPerson = person.name; // 별명이 가장 긴 사람 갱신
+    //       }
+    //     }
+    //   }
+
+    //   // 결과를 HTML에 추가
+    //   main.innerHTML += `<p>별명이 가장 긴 사람은 ${longestPerson}입니다.</p>`;
+    // };
+
+    // longName();
   </script>
 </html>

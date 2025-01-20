@@ -1,0 +1,110 @@
+/* 전체적인 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+  margin: 0;
+  color: #333;
+}
+
+/* 입력 필드 스타일 */
+.inpit-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.inpit-wrap input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.inpit-wrap input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 알림 텍스트 스타일 */
+div[id$="Input"] {
+  color: red;
+  font-size: 14px;
+}
+
+/* 테이블 스타일 */
+.main-wrap {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+
+table.main {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table.main th,
+table.main td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table.main th {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+table.main td {
+  background-color: white;
+}
+
+table.main tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table.main tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+table.main td.career,
+table.main td.nick {
+  font-style: italic;
+}
+
+/* 모바일 화면에서의 스타일 */
+@media (max-width: 768px) {
+  .inpit-wrap {
+    padding: 15px;
+  }
+
+  table.main th,
+  table.main td {
+    padding: 10px;
+  }
+}
