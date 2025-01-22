@@ -10,26 +10,50 @@
     <!--  -->
     <div class="inpit-wrap">
       <!-- 아이디는 숫자, 중복 불가 -->
-      <input type="number" class="id" placeholder="아이디를 입력해 주세요." />
+      <input
+        onkeyup="check('id')"
+        type="number"
+        class="id"
+        placeholder="아이디를 입력해 주세요."
+      />
       <div class="idInput"></div>
 
       <!-- 이름 중복 가능 -->
-      <input class="name" placeholder="이름을 입력해 주세요." />
+      <input
+        onkeyup="check('name')"
+        class="name"
+        placeholder="이름을 입력해 주세요."
+      />
       <div class="nameInput"></div>
 
       <!-- 나이 숫자 -->
-      <input type="number" class="age" placeholder="나이를 입력해 주세요." />
+      <input
+        onkeyup="check('age')"
+        type="number"
+        class="age"
+        placeholder="나이를 입력해 주세요."
+      />
       <div class="ageInput"></div>
 
       <!-- 경력사항 최소 15자 이상 -->
-      <input class="career" placeholder="경력을 입력해 주세요." />
+      <input
+        onkeyup="check('career')"
+        class="career"
+        placeholder="경력을 입력해 주세요."
+      />
       <div class="careerInput"></div>
 
       <!-- 별명 최소 2자 이상 -->
-      <input class="nickName" placeholder="별명을 입력해 주세요." />
+      <input
+        onkeyup="check('nickName')"
+        class="nickName"
+        placeholder="별명을 입력해 주세요."
+      />
       <div class="nicknameInput"></div>
 
-      <button onclick="dataCheck()">저장</button>
+      <button disabled class="btn" onclick="clickData()" style="opacity: 0.5">
+        저장
+      </button>
     </div>
     <!-- 테이블 -->
     <div class="main-wrap"></div>
@@ -38,47 +62,95 @@
       const main = document.querySelector(".main-wrap");
 
       main.innerHTML = `
-        <table class="main" border="1">
-          <thead>
-            <tr>
-              <th>이름</th>
-              <th>나이</th>
-              <th>커리어</th>
-              <th>별명</th>
-            </tr>
-          </thead>
-          <tbody class="sub"></tbody>
-        </table>
-      `;
+            <table class="main" border="1">
+              <thead>
+                <tr>
+                  <th>이름</th>
+                  <th>나이</th>
+                  <th>커리어</th>
+                  <th>별명</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody class="sub"></tbody>
+            </table>
+          `;
       let sub = document.querySelector(".sub");
-      let dataSet = JSON.parse(window.localStorage.getItem("data")) || []; // 초기화 시 null 방지
+      let dataSet = JSON.parse(window.localStorage.getItem("data")) || []; //데이터 가져오기 및 초기화 시 null 방지
 
-      // div
+      // div 클래스 선언
       const idInput = document.querySelector(".idInput");
       const nameInput = document.querySelector(".nameInput");
       const ageInput = document.querySelector(".ageInput");
       const careerInput = document.querySelector(".careerInput");
       const nicknameInput = document.querySelector(".nicknameInput");
-
+      // 인풋 데이터 받아오기
       const id = document.querySelector(".id");
       const nameValue = document.querySelector(".name");
       const age = document.querySelector(".age");
       const career = document.querySelector(".career");
       const nickName = document.querySelector(".nickName");
 
-      // alertText 함수
-      const alertText = (id) => {
-        const person = dataSet.find((item) => item.id == id); // dataSet 사용
-        if (person) {
-          alert(
-            `해당하는 사람의 이름은 ${person.name} 이고 나이는 ${
-              person.age
-            }이며 ${
-              person.age > 19 ? "성인입니다" : "미성년자입니다"
-            } 커리어에는 ${person.career}가 있고 별명으로는 ${
-              person.nickName
-            }이 있습니다.`
-          );
+      // // alertText 함수
+      // const alertText = (id) => {
+      //   const person = dataSet.find((item) => item.id == id); // dataSet 사용
+      //   if (person) {
+      //     alert(
+      //       `해당하는 사람의 이름은 ${person.name} 이고 나이는 ${
+      //         person.age
+      //       }이며 ${
+      //         person.age > 19 ? "성인입니다" : "미성년자입니다"
+      //       } 커리어에는 ${person.career}가 있고 별명으로는 ${
+      //         person.nickName
+      //       }이 있습니다.`
+      //     );
+      //   }
+      // };
+      // 테이블 제거 함수
+      const del = (id) => {
+        const same = dataSet.find((item) => item.id == id);
+        const datadel = dataSet.filter((item) => item.id !== same.id);
+        dataSet = datadel;
+        window.localStorage.setItem("data", JSON.stringify(dataSet));
+        maketable();
+      };
+      //수정 함수
+      const rewrite = (id) => {
+        const fixbtn = document.querySelector(`.re${id}`); //수정버튼 밖의 td
+        const btn2 = fixbtn.innerHTML; // 조건 작성 위한 텍스트 들고오기
+        const same = dataSet.find((item) => item.id == id); //dataSet에서 클릭한 행의 배열과 같은 dataSet배열 들고오기
+        const classNum = `career${id}`; //커리어 td칸 클래스 선택을 위한 빌드업
+        const changeTd = document.querySelector(`.${classNum}`); //td칸 클래스 선택
+
+        if (btn2 == `<button onclick="rewrite(${same.id})">수정</button>`) {
+          // 버튼의 텍스트가 수정일 때
+          changeTd.innerHTML = `<input
+          class = "changeCareer${same.id}"
+        value = "${same.career}"
+      />`;
+          //수정 버튼 클릭 시 수정완료 버튼으로 변경
+          fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정완료</button><div class="div${same.id}"></div>`;
+        } else {
+          //input태그 value 가져오기
+          const changeCareer = document.querySelector(
+            `.changeCareer${id}`
+          ).value;
+          //버튼 밑 div 태그
+          const sex = document.querySelector(`.div${id}`);
+          if (changeCareer.length < 15) {
+            //15자 이상의 입력 조건
+            sex.innerHTML = `15자 이상 입력해주세요!`;
+          } else {
+            sex.innerHTML = ``;
+          }
+          if (changeCareer.length >= 15) {
+            // 조건 만족 시 데이터 보낸 후 테이블 리셋
+            same.career = changeCareer;
+            window.localStorage.setItem("data", JSON.stringify(dataSet));
+            fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정</button><div class="div1"></div>`;
+            maketable();
+          }
         }
       };
 
@@ -87,13 +159,16 @@
         sub.innerHTML = ""; // 테이블 초기화
         dataSet.forEach((item) => {
           sub.innerHTML += `
-            <tr onclick="alertText(${item.id})">
-              <td>${item.name}</td>
-              <td>${item.age}</td>
-              <td class="career">${item.career}</td>
-              <td class="nick">${item.nickName}</td>
-            </tr>
-          `;
+                <tr)">
+                  <td>${item.name}</td>
+                  <td>${item.age}</td>
+                  <td class="career${item.id}">${item.career}</td>
+                  <td class="nick">${item.nickName}</td>
+                  <td class="re${item.id}"><button onclick="rewrite(${item.id})" >수정</button></td>
+                  <td><button onclick="del(${item.id})" class="delet">제거</button></td>
+                </tr>
+              `;
+          console.log();
         });
       };
       maketable();
@@ -110,56 +185,96 @@
         window.localStorage.setItem("data", JSON.stringify(dataSet));
       };
 
-      const dataCheck = () => {
-        const sometimes = dataSet.filter((item) => item.id == id.value);
-        const nick = dataSet.filter((item) => item.nickName == nickName.value);
-        let open = false;
+      // 데이터 저장
+      let open1 = true;
+      let open2 = true;
+      let open3 = true;
+      let open4 = true;
+      let open5 = true;
+      const check = (type) => {
+        if (type === "id") {
+          const sometimes = dataSet.filter((item) => item.id == id.value);
+          if (sometimes.length > 0 || id.value === "") {
+            idInput.innerHTML = `중복된 아이디입니다!`;
+            open1 = true;
+          } else {
+            idInput.innerHTML = ``;
+            open1 = false;
+          }
+        }
+        if (type === "name") {
+          if (
+            nameValue.value === "" ||
+            nameValue.value.length > 5 ||
+            nameValue.value > 0
+          ) {
+            nameInput.innerHTML = `제대로 된 값을 입력해주세요!`;
+            open2 = true;
+          } else {
+            nameInput.innerHTML = ``;
+            open2 = false;
+          }
+        }
+        if (type === "age") {
+          // 나이 확인
 
-        // 중복된 아이디 확인
-        if (sometimes.length > 0 || id.value === "") {
-          idInput.innerHTML = `중복된 아이디입니다!`;
-          open = true;
+          if (age.value === "" || age.value > 150) {
+            ageInput.innerHTML = `제대로 된 값을 입력해주세요!`;
+            open3 = true;
+          } else {
+            ageInput.innerHTML = ``;
+            open3 = false;
+          }
+        }
+        if (type === "career") {
+          // 경력 확인
+          if (career.value.length < 15) {
+            careerInput.innerHTML = `15자 이상 입력해주세요!`;
+            open4 = true;
+          } else {
+            careerInput.innerHTML = ``;
+            open4 = false;
+          }
+        }
+        if (type === "nickName") {
+          const nick = dataSet.filter(
+            (item) => item.nickName == nickName.value
+          );
+          // 별명 확인
+
+          if (nick.length > 0 || nickName.value.length < 2) {
+            nicknameInput.innerHTML = `입력좀 똑바로 해라`;
+            open5 = true;
+          } else {
+            nicknameInput.innerHTML = ``;
+            open5 = false;
+          }
+        }
+        const btn = document.querySelector(".btn");
+        if ((open1, open2, open3, open4, open5 === false)) {
+          btn.removeAttribute("disabled");
+          btn.removeAttribute("style");
         } else {
-          idInput.innerHTML = `확인되었습니다!`;
+          btn.setAttribute("disabled", "true");
+          btn.style.opacity = 0.5;
         }
-
-        // 이름 확인
-        if (nameValue.value === "" || nameValue.value.length > 5) {
-          nameInput.innerHTML = `<p>제대로 된 값을 입력해주세요!</p>`;
-          open = true;
-        } else {
-          nameInput.innerHTML = `<p>확인되었습니다!</p>`;
-        }
-
-        // 나이 확인
-        if (age.value === "" || age.value > 150) {
-          ageInput.innerHTML = `<p>제대로된 값을 입력해주세요!</p>`;
-          open = true;
-        } else {
-          ageInput.innerHTML = `<p>확인되었습니다!</p>`;
-        }
-
-        // 경력 확인
-        if (career.value.length < 15) {
-          careerInput.innerHTML = `<p>15자 이상 입력해주세요!</p>`;
-          open = true;
-        } else {
-          careerInput.innerHTML = `<p>확인되었습니다!</p>`;
-        }
-
-        // 별명 확인
-        if (nick.length > 0 || nickName.value === "") {
-          nicknameInput.innerHTML = `<p>입력좀 똑바로 해라</p>`;
-          open = true;
-        } else {
-          nicknameInput.innerHTML = `<p>시발거 끝났네 ㅋㅋ</p>`;
-        }
-
-        // 데이터 저장
-        if (!open) {
-          saveData();
-          maketable();
-        }
+        open1 = true;
+        open2 = true;
+        open3 = true;
+        open4 = true;
+        open5 = true;
+      };
+      const clickData = () => {
+        const btn = document.querySelector(".btn");
+        saveData();
+        maketable();
+        document.querySelector(".id").value = "";
+        document.querySelector(".name").value = "";
+        document.querySelector(".age").value = "";
+        document.querySelector(".career").value = "";
+        document.querySelector(".nickName").value = "";
+        btn.setAttribute("disabled", "true");
+        btn.style.opacity = 0.5;
       };
     </script>
   </body>

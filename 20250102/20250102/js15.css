@@ -1,110 +1,116 @@
-/* 전체적인 스타일 */
+/* General Reset */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  padding: 20px;
   margin: 0;
-  color: #333;
-}
-
-/* 입력 필드 스타일 */
-.inpit-wrap {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.inpit-wrap input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.inpit-wrap input:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* 알림 텍스트 스타일 */
-div[id$="Input"] {
-  color: red;
-  font-size: 14px;
-}
-
-/* 테이블 스타일 */
-.main-wrap {
-  margin-top: 30px;
-  overflow-x: auto;
-}
-
-table.main {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-table.main th,
-table.main td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-table.main th {
-  background-color: #f1f1f1;
-  color: #333;
-}
-
-table.main td {
-  background-color: white;
-}
-
-table.main tr:nth-child(even) {
+  font-family: Arial, sans-serif;
   background-color: #f9f9f9;
 }
 
-table.main tr:hover {
-  background-color: #f1f1f1;
+.inpit-wrap {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.inpit-wrap input {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.inpit-wrap input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.inpit-wrap div {
+  font-size: 14px;
+  color: #d9534f;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  height: 20px;
+}
+
+.inpit-wrap .btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 
-table.main td.career,
-table.main td.nick {
-  font-style: italic;
+.inpit-wrap .btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 
-/* 모바일 화면에서의 스타일 */
+/* Table Styles */
+.main-wrap {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.main {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.main th,
+.main td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.main th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.main td {
+  background-color: #f9f9f9;
+}
+
+.main td input {
+  width: calc(100% - 24px); /* Adjusting for padding */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .inpit-wrap {
+  .inpit-wrap,
+  .main-wrap {
     padding: 15px;
   }
 
-  table.main th,
-  table.main td {
+  .inpit-wrap input,
+  .inpit-wrap .btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .main th,
+  .main td {
+    font-size: 14px;
     padding: 10px;
   }
 }
