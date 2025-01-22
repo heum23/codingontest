@@ -129,6 +129,7 @@
           class = "changeCareer${same.id}"
         value = "${same.career}"
       />`;
+
           //수정 버튼 클릭 시 수정완료 버튼으로 변경
           fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정완료</button><div class="div${same.id}"></div>`;
         } else {
@@ -136,8 +137,10 @@
           const changeCareer = document.querySelector(
             `.changeCareer${id}`
           ).value;
+
           //버튼 밑 div 태그
           const sex = document.querySelector(`.div${id}`);
+
           if (changeCareer.length < 15) {
             //15자 이상의 입력 조건
             sex.innerHTML = `15자 이상 입력해주세요!`;
