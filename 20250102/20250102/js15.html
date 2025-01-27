@@ -92,67 +92,134 @@
       const career = document.querySelector(".career");
       const nickName = document.querySelector(".nickName");
 
-      // // alertText 함수
-      // const alertText = (id) => {
-      //   const person = dataSet.find((item) => item.id == id); // dataSet 사용
-      //   if (person) {
-      //     alert(
-      //       `해당하는 사람의 이름은 ${person.name} 이고 나이는 ${
-      //         person.age
-      //       }이며 ${
-      //         person.age > 19 ? "성인입니다" : "미성년자입니다"
-      //       } 커리어에는 ${person.career}가 있고 별명으로는 ${
-      //         person.nickName
-      //       }이 있습니다.`
-      //     );
-      //   }
-      // };
       // 테이블 제거 함수
       const del = (id) => {
         const same = dataSet.find((item) => item.id == id);
         const datadel = dataSet.filter((item) => item.id !== same.id);
+        const datadel1 = dataSet.filter((item) => item.id === same.id);
         dataSet = datadel;
+        const trDel = document.querySelector(`.tr${id}`);
+        trDel.remove();
         window.localStorage.setItem("data", JSON.stringify(dataSet));
-        maketable();
       };
+      // input 수정 시 조건 검사 함수
+      let checkInput1 = true;
+      let checkInput2 = true;
+      let checkInput3 = true;
+      const reInput1 = (type, id) => {
+        if (type === "career") {
+          const changeCareer = document.querySelector(
+            `.changeCareer${id}`
+          ).value;
+          const div2 = document.querySelector(`.div${id}`);
+          if (changeCareer === "") {
+            div2.innerHTML = "";
+            checkInput1 = false;
+          } else if (changeCareer.length < 15) {
+            //15자 이상의 입력 조건
+            div2.innerHTML = `15자 이상 입력해주세요!`;
+            checkInput1 = false;
+          } else {
+            div2.innerHTML = ``;
+            checkInput1 = true;
+          }
+        }
+        if (type === "name") {
+          const changeName = document.querySelector(`.changeName${id}`).value;
+          // name 밑 input 태그
+          const div2 = document.querySelector(`.div${id + "a1"}`);
+          if (changeName === "") {
+            div2.innerHTML = ``;
+            checkInput2 = false;
+          } else if (changeName.length > 5) {
+            //15자 이상의 입력 조건
+            div2.innerHTML = `이름이 너무 깁니다!`;
+            checkInput2 = false;
+          } else {
+            div2.innerHTML = ``;
+            checkInput2 = true;
+          }
+        }
+        if (type === "age") {
+          const changeAge = document.querySelector(`.changeAge${id}`).value;
+          // age 밑 input 태그
+          const div2 = document.querySelector(`.div${id + "a2"}`);
+          if (changeAge === "") {
+            div2.innerHTML = ``;
+            checkInput3 = false;
+          } else if (changeAge > 150) {
+            //15자 이상의 입력 조건
+            div2.innerHTML = `나이가 너무 많습니다!`;
+            checkInput3 = false;
+          } else {
+            div2.innerHTML = "";
+            checkInput3 = true;
+          }
+        }
+      };
+
       //수정 함수
       const rewrite = (id) => {
         const fixbtn = document.querySelector(`.re${id}`); //수정버튼 밖의 td
         const btn2 = fixbtn.innerHTML; // 조건 작성 위한 텍스트 들고오기
         const same = dataSet.find((item) => item.id == id); //dataSet에서 클릭한 행의 배열과 같은 dataSet배열 들고오기
         const classNum = `career${id}`; //커리어 td칸 클래스 선택을 위한 빌드업
+        const classNum_name = `name${id}`; //커리어 td칸 클래스 선택을 위한 빌드업
+        const classNum_age = `age${id}`; //커리어 td칸 클래스 선택을 위한 빌드업
         const changeTd = document.querySelector(`.${classNum}`); //td칸 클래스 선택
+        const changeTd_name = document.querySelector(`.${classNum_name}`); //td칸 클래스 선택
+        const changeTd_age = document.querySelector(`.${classNum_age}`); //td칸 클래스 선택
 
         if (btn2 == `<button onclick="rewrite(${same.id})">수정</button>`) {
           // 버튼의 텍스트가 수정일 때
+          // career
           changeTd.innerHTML = `<input
           class = "changeCareer${same.id}"
         value = "${same.career}"
-      />`;
-
+        onkeyup="reInput1('career',${same.id})"
+      /><div class="div${same.id}"></div>`;
+          //name 수정 input
+          changeTd_name.innerHTML = `<input
+          class = "changeName${same.id}"
+        value = "${same.name}"
+        onkeyup="reInput1('name',${same.id})"
+      /><div class="div${same.id + "a1"}"></div>`;
+          //age 수정 input
+          changeTd_age.innerHTML = `<input
+          class = "changeAge${same.id}"
+        value = "${same.age}"
+        onkeyup="reInput1('age',${same.id})"
+      /><div class="div${same.id + "a2"}"></div>`;
           //수정 버튼 클릭 시 수정완료 버튼으로 변경
-          fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정완료</button><div class="div${same.id}"></div>`;
+          fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정완료</button>`;
         } else {
           //input태그 value 가져오기
           const changeCareer = document.querySelector(
             `.changeCareer${id}`
           ).value;
-
-          //버튼 밑 div 태그
-          const sex = document.querySelector(`.div${id}`);
-
-          if (changeCareer.length < 15) {
-            //15자 이상의 입력 조건
-            sex.innerHTML = `15자 이상 입력해주세요!`;
-          } else {
-            sex.innerHTML = ``;
-          }
-          if (changeCareer.length >= 15) {
+          const changeName = document.querySelector(`.changeName${id}`).value;
+          const changeAge = document.querySelector(`.changeAge${id}`).value;
+          //input태그 밑 div 태그
+          const div2 = document.querySelector(`.div${id}`);
+          const div2_name = document.querySelector(`.div${id + "a1"}`);
+          const div2_age = document.querySelector(`.div${id + "a2"}`);
+          if (
+            div2.innerHTML === "" &&
+            div2_name.innerHTML === "" &&
+            div2_age.innerHTML === "" &&
+            checkInput1 &&
+            checkInput2 &&
+            checkInput3
+          ) {
             // 조건 만족 시 데이터 보낸 후 테이블 리셋
             same.career = changeCareer;
+            same.name = changeName;
+            same.age = changeAge;
+            changeTd.innerHTML = `${same.career}`;
+            changeTd_name.innerHTML = `${same.name}`;
+            changeTd_age.innerHTML = `${same.age}`;
             window.localStorage.setItem("data", JSON.stringify(dataSet));
-            fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정</button><div class="div1"></div>`;
-            maketable();
+            fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정</button>`;
           }
         }
       };
@@ -162,9 +229,9 @@
         sub.innerHTML = ""; // 테이블 초기화
         dataSet.forEach((item) => {
           sub.innerHTML += `
-                <tr)">
-                  <td>${item.name}</td>
-                  <td>${item.age}</td>
+                <tr class="tr${item.id}">
+                  <td class="name${item.id}">${item.name}</td>
+                  <td class="age${item.id}">${item.age}</td>
                   <td class="career${item.id}">${item.career}</td>
                   <td class="nick">${item.nickName}</td>
                   <td class="re${item.id}"><button onclick="rewrite(${item.id})" >수정</button></td>
@@ -197,8 +264,11 @@
       const check = (type) => {
         if (type === "id") {
           const sometimes = dataSet.filter((item) => item.id == id.value);
-          if (sometimes.length > 0 || id.value === "") {
+          if (sometimes.length > 0) {
             idInput.innerHTML = `중복된 아이디입니다!`;
+            open1 = true;
+          } else if (id.value === "") {
+            idInput.innerHTML = ``;
             open1 = true;
           } else {
             idInput.innerHTML = ``;
@@ -206,12 +276,11 @@
           }
         }
         if (type === "name") {
-          if (
-            nameValue.value === "" ||
-            nameValue.value.length > 5 ||
-            nameValue.value > 0
-          ) {
+          if (nameValue.value.length > 5 || nameValue.value > 0) {
             nameInput.innerHTML = `제대로 된 값을 입력해주세요!`;
+            open2 = true;
+          } else if (nameValue.value === "") {
+            nameInput.innerHTML = ``;
             open2 = true;
           } else {
             nameInput.innerHTML = ``;
@@ -221,8 +290,11 @@
         if (type === "age") {
           // 나이 확인
 
-          if (age.value === "" || age.value > 150) {
-            ageInput.innerHTML = `제대로 된 값을 입력해주세요!`;
+          if (age.value > 150) {
+            ageInput.innerHTML = `나이가 너무 많습니다!`;
+            open3 = true;
+          } else if (age.value === "") {
+            ageInput.innerHTML = ``;
             open3 = true;
           } else {
             ageInput.innerHTML = ``;
@@ -231,7 +303,10 @@
         }
         if (type === "career") {
           // 경력 확인
-          if (career.value.length < 15) {
+          if (career.value === "") {
+            careerInput.innerHTML = ``;
+            open4 = true;
+          } else if (career.value.length < 15) {
             careerInput.innerHTML = `15자 이상 입력해주세요!`;
             open4 = true;
           } else {
@@ -244,9 +319,13 @@
             (item) => item.nickName == nickName.value
           );
           // 별명 확인
-
-          if (nick.length > 0 || nickName.value.length < 2) {
-            nicknameInput.innerHTML = `입력좀 똑바로 해라`;
+          if (nickName.value === "") {
+            nicknameInput.innerHTML = "";
+          } else if (nick.length > 0) {
+            nicknameInput.innerHTML = `중복된 별명입니다!`;
+            open5 = true;
+          } else if (nickName.value.length < 2) {
+            nicknameInput.innerHTML = `2자 이상 입력해주세요!`;
             open5 = true;
           } else {
             nicknameInput.innerHTML = ``;
@@ -254,19 +333,19 @@
           }
         }
         const btn = document.querySelector(".btn");
-        if ((open1, open2, open3, open4, open5 === false)) {
+        if (!open1 && !open2 && !open3 && !open4 && !open5) {
           btn.removeAttribute("disabled");
           btn.removeAttribute("style");
         } else {
           btn.setAttribute("disabled", "true");
           btn.style.opacity = 0.5;
         }
-        open1 = true;
-        open2 = true;
-        open3 = true;
-        open4 = true;
-        open5 = true;
       };
+      open1 = true;
+      open2 = true;
+      open3 = true;
+      open4 = true;
+      open5 = true;
       const clickData = () => {
         const btn = document.querySelector(".btn");
         saveData();
