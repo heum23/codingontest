@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/test/sss.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="img"><img src="/20250102/img/start.png" /></div>
+    <div class="container">
+      <div onclick="changeImg('one')" class="box one">apple</div>
+      <div onclick="changeImg('two')" class="box two">banana</div>
+      <div onclick="changeImg('three')" class="box three">grape</div>
+      <div onclick="changeImg('four')" class="box four">peach</div>
+    </div>
+  </body>
+  <script>
+    const img = document.querySelector(".img");
+    console.log(img.innerHTML);
+    const changeImg = (id) => {
+      if (id === "one") {
+        img.innerHTML = `<img src="/20250102/img/apple.jpg" />`;
+      } else if (id === "two") {
+        img.innerHTML = `<img src="/20250102/img/banana.jpeg" />`;
+      } else if (id === "three") {
+        img.innerHTML = `<img src="/20250102/img/grape.jpg" />`;
+      } else if (id === "four") {
+        img.innerHTML = `<img src="/20250102/img/peach.jpeg" />`;
+      } else {
+        console.log("error");
+      }
+    };
+  </script>
+</html>
